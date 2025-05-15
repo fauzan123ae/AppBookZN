@@ -39,7 +39,7 @@ class BookAdapter(
 
     fun deleteItem(position: Int) {
         val book = getItem(position)
-        onDelete(book) // ✅ Hapus langsung dari Database
+        onDelete(book)
         notifyItemRemoved(position)
     }
 }

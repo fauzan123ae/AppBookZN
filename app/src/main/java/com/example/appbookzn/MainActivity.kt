@@ -11,7 +11,6 @@ import com.example.appbookzn.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    // Inisialisasi dua buku default
     private val book1 = Book(title = "Perahu Kertas", author = "Dee Lestari")
     private val book2 = Book(title = "Phone Tips", author = "Fauzan")
 
@@ -24,36 +23,34 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inisialisasi Adapter
         bookAdapter = BookAdapter(this,
             onItemClick = { book ->
                 Toast.makeText(this, "Clicked on ${book.title}", Toast.LENGTH_SHORT).show()
             },
             onDelete = { book ->
-                bookViewModel.deleteBook(book) // ✅ Hapus langsung dari DB
+                bookViewModel.deleteBook(book)
             }
         )
 
-        // Setup RecyclerView
         with(binding.rvBooks) {
             layoutManager = GridLayoutManager(this@MainActivity, 2)
             adapter = bookAdapter
         }
 
-        // Inisialisasi database
+
         bookViewModel.bookDatabase = BookDatabase.getInstance(this)
 
-        // Observasi perubahan data
+
         bookViewModel.books.observe(this) {
             bookAdapter.submitList(it)
         }
 
-        // Tombol untuk menambah buku
+
         binding.btnAddBook.setOnClickListener {
             showAddBookDialog()
         }
 
-        // Swipe untuk hapus
+
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder) = false
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
@@ -61,7 +58,6 @@ class MainActivity : AppCompatActivity() {
             }
         }).attachToRecyclerView(binding.rvBooks)
 
-        // ✅ Tambahkan buku jika belum ada di database
         bookViewModel.getBooks()
         bookViewModel.books.observe(this) { books ->
             if (books.none { it.title == book1.title && it.author == book1.author }) {
@@ -73,7 +69,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Fungsi untuk menampilkan dialog tambah buku
     private fun showAddBookDialog() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_add_book, null)
         val titleInput = dialogView.findViewById<EditText>(R.id.etTitle)
