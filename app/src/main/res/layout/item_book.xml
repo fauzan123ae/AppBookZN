@@ -30,10 +30,9 @@
             android:id="@+id/bookAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Penulis"
+            android:text="Penulis Buku"
             android:textSize="14sp"
-            android:textColor="#777777"
-            android:layout_marginTop="4dp" />
+            android:textColor="#555555"
+            android:layout_marginTop="4dp" /> <!-- Menutup tag dengan benar -->
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

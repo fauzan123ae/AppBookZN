@@ -8,7 +8,6 @@
     android:background="@drawable/background"
     android:padding="16dp">
 
-    <!-- Title -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
@@ -22,7 +21,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"/>
 
-    <!-- Info text -->
     <TextView
         android:id="@+id/tvInfo"
         android:layout_width="0dp"
@@ -36,7 +34,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"/>
 
-    <!-- Add Book Button -->
     <Button
         android:id="@+id/btnAddBook"
         android:layout_width="wrap_content"
@@ -49,7 +46,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
-    <!-- RecyclerView untuk list buku -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBooks"
         android:layout_width="0dp"
