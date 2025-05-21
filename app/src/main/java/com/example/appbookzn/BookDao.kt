@@ -19,3 +19,4 @@ interface BookDao {
     @Query("DELETE FROM Book")
     fun deleteAll()
 }
+//

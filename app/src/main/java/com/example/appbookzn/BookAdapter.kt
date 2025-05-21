@@ -53,3 +53,4 @@ class BookDiffCallback : DiffUtil.ItemCallback<Book>() {
         return oldItem == newItem
     }
 }
+//
