@@ -10,4 +10,8 @@ data class Book(
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 
 )
+<<<<<<< HEAD
 //
+=======
+
+>>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b
