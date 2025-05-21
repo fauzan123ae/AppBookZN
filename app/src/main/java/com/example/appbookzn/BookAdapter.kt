@@ -1,26 +1,16 @@
 package com.example.appbookzn
 
-<<<<<<< HEAD
 import android.content.Context
-=======
->>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-<<<<<<< HEAD
 import androidx.recyclerview.widget.*
 import com.example.appbookzn.R
 
 class BookAdapter(
     private val context: Context,
     private val onItemClick: (Book) -> Unit,
-=======
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-
-class BookAdapter(
->>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b
     private val onDelete: (Book) -> Unit
 ) : ListAdapter<Book, BookAdapter.BookViewHolder>(BookDiffCallback()) {
 
@@ -31,15 +21,8 @@ class BookAdapter(
         fun bind(book: Book) {
             bookTitle.text = book.title
             bookAuthor.text = "by ${book.author}"
-<<<<<<< HEAD
             itemView.setOnClickListener {
                 onItemClick(book)
-=======
-
-            itemView.setOnLongClickListener {
-                onDelete(book)
-                true
->>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b
             }
         }
     }
@@ -53,7 +36,6 @@ class BookAdapter(
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
-<<<<<<< HEAD
 
     fun deleteItem(position: Int) {
         val book = getItem(position)
@@ -72,6 +54,3 @@ class BookDiffCallback : DiffUtil.ItemCallback<Book>() {
     }
 }
 //
-=======
-}
->>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b

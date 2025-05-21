@@ -28,15 +28,11 @@ android {
                 "proguard-rules.pro"
             )
         }
-<<<<<<< HEAD
         buildFeatures {
             viewBinding = true
         }
     }
 
-=======
-    }
->>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -44,11 +40,8 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b
 }
 
 dependencies {
@@ -56,12 +49,9 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
     val lifecycle_version="2.8.7"
-<<<<<<< HEAD
     // Testing
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
-=======
->>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     implementation(libs.androidx.core.ktx)

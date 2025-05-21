@@ -8,10 +8,6 @@
     android:background="@drawable/background"
     android:padding="16dp">
 
-<<<<<<< HEAD
-=======
-    <!-- Title -->
->>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
@@ -25,10 +21,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"/>
 
-<<<<<<< HEAD
-=======
-    <!-- Info text -->
->>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b
     <TextView
         android:id="@+id/tvInfo"
         android:layout_width="0dp"
@@ -42,10 +34,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"/>
 
-<<<<<<< HEAD
-=======
-    <!-- Add Book Button -->
->>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b
     <Button
         android:id="@+id/btnAddBook"
         android:layout_width="wrap_content"
@@ -58,10 +46,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
-<<<<<<< HEAD
-=======
-    <!-- RecyclerView untuk list buku -->
->>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBooks"
         android:layout_width="0dp"
@@ -75,8 +59,4 @@
         android:paddingBottom="16dp"
         android:overScrollMode="never"/>
 
-<<<<<<< HEAD
 </androidx.constraintlayout.widget.ConstraintLayout>
-=======
-</androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> 75e8f7e59f7229caca7f9bd4e9408c8d3f417a8b
