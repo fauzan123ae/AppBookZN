@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.appbookzn.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -23,43 +23,41 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        bookAdapter = BookAdapter(this,
+        bookAdapter = BookAdapter(
+            context = this,
             onItemClick = { book ->
                 Toast.makeText(this, "Clicked on ${book.title}", Toast.LENGTH_SHORT).show()
             },
-            onDelete = { book ->
-                bookViewModel.deleteBook(book)
+            onItemLongClick = { book ->
+                showDeleteConfirmation(book)
             }
         )
 
-        with(binding.rvBooks) {
-            layoutManager = GridLayoutManager(this@MainActivity, 2)
-            adapter = bookAdapter
+
+        val layoutManager = GridLayoutManager(this, 2)
+        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return when (bookAdapter.getItemViewType(position)) {
+                    0 -> 2
+                    1 -> 1
+                    else -> 1
+                }
+            }
         }
+
+        binding.rvBooks.layoutManager = layoutManager
+        binding.rvBooks.adapter = bookAdapter
 
 
         bookViewModel.bookDatabase = BookDatabase.getInstance(this)
 
 
-        bookViewModel.books.observe(this) {
-            bookAdapter.submitList(it)
-        }
-
-
-        binding.btnAddBook.setOnClickListener {
-            showAddBookDialog()
-        }
-
-
-        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder) = false
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                bookAdapter.deleteItem(viewHolder.adapterPosition)
-            }
-        }).attachToRecyclerView(binding.rvBooks)
-
-        bookViewModel.getBooks()
         bookViewModel.books.observe(this) { books ->
+            val items = mutableListOf<BookItem>()
+            items.add(BookItem.Header("📚 Book Notes"))
+            items.addAll(books.map { BookItem.BookData(it) })
+            bookAdapter.submitList(items)
+
             if (books.none { it.title == book1.title && it.author == book1.author }) {
                 bookViewModel.insertBook(book1)
             }
@@ -67,6 +65,12 @@ class MainActivity : AppCompatActivity() {
                 bookViewModel.insertBook(book2)
             }
         }
+
+        binding.btnAddBook.setOnClickListener {
+            showAddBookDialog()
+        }
+
+        bookViewModel.getBooks()
     }
 
     private fun showAddBookDialog() {
@@ -78,12 +82,26 @@ class MainActivity : AppCompatActivity() {
             .setTitle("Tambah Buku")
             .setView(dialogView)
             .setPositiveButton("Simpan") { _, _ ->
-                if (titleInput.text.isNotEmpty() && authorInput.text.isNotEmpty()) {
-                    bookViewModel.insertBook(Book(titleInput.text.toString(), authorInput.text.toString()))
+                val title = titleInput.text.toString()
+                val author = authorInput.text.toString()
+                if (title.isNotEmpty() && author.isNotEmpty()) {
+                    bookViewModel.insertBook(Book(title = title, author = author))
+                } else {
+                    Toast.makeText(this, "Judul dan Penulis harus diisi", Toast.LENGTH_SHORT).show()
                 }
             }
             .setNegativeButton("Batal", null)
             .show()
     }
+
+    private fun showDeleteConfirmation(book: Book) {
+        AlertDialog.Builder(this)
+            .setTitle("Hapus Buku")
+            .setMessage("Apakah kamu yakin ingin menghapus '${book.title}'?")
+            .setPositiveButton("Ya") { _, _ ->
+                bookViewModel.deleteBook(book)
+            }
+            .setNegativeButton("Tidak", null)
+            .show()
+    }
 }
-//

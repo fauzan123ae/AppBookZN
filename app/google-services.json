@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "706935887291",
+    "project_id": "zanproject212",
+    "storage_bucket": "zanproject212.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706935887291:android:5b4fcb8b99a01a27e7209e",
+        "android_client_info": {
+          "package_name": "com.example.appbookzn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy_652NdqnBJxA49OVylVqmqdBVOpI71A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
